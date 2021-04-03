@@ -1,0 +1,13 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Brand</th>
+        </tr>
+    </thead>
+
+    <tr *ngFor = "let brand on brands">
+        <td>{{brand.brandId}}</td>
+        <td>{{brand.brandName}}</td>
+    </tr>
+</table>

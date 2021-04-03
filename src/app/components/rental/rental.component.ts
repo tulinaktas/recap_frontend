@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { Rental } from 'src/app/models/rental';
+import { RentalDetailsDto } from 'src/app/models/rentalDetailsDto';
+import { RentalService } from 'src/app/services/rental.service';
+
+@Component({
+  selector: 'app-rental',
+  templateUrl: './rental.component.html',
+  styleUrls: ['./rental.component.css']
+})
+export class RentalComponent implements OnInit {
+
+  rentals:Rental[] = []
+  rentalsDetails :RentalDetailsDto[] = []
+  constructor(private rentalService:RentalService) { }
+
+  ngOnInit(): void {
+    this.getRentalsDetail();
+  }
+getRentals(){
+  this.rentalService.getRentals().subscribe(
+    responce =>{
+      this.rentals = responce.data
+    }
+  )
+}
+getRentalsDetail(){
+  this.rentalService.getRentalsDetail().subscribe(
+    responce =>{
+      this.rentalsDetails = responce.data
+    }
+  )
+}
+}
