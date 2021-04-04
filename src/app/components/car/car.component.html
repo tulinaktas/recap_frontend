@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tr *ngFor ="let car of carsDetail">
-        <td>{{car.brandName}}</td>
+        <td>{{car.brandName |uppercase}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.carName}}</td>
         <td>{{car.dailyPrice}}</td>

@@ -7,11 +7,13 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 
 const routes: Routes = [
-{path:"car",component:CarComponent},
-{path:"rental",component:RentalComponent},
-{path:"customer",component:CustomerComponent},
-{path:"color",component:ColorComponent},
-{path:"brand",component:BrandComponent}
+{path:"cars",component:CarComponent},
+{path:"rentals",component:RentalComponent},
+{path:"customers",component:CustomerComponent},
+{path:"colors",component:ColorComponent},
+{path:"brands",component:BrandComponent},
+{path:"cars/color/:colorId",component:CarComponent},
+{path:"cars/brand/:brandId",component:CarComponent}
 ];
 
 @NgModule({

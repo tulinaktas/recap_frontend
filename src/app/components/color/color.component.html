@@ -1,16 +1,20 @@
-<div *ngIf="dataLoaded == false"  class="spinner-border text-secondary" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
-<table *ngIf="dataLoaded==true" class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Color</th>
-        </tr>
-    </thead>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Color
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div *ngIf="dataLoaded == false"  class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div *ngIf="dataLoaded==true" class="list-group">
+            <a routerLink ="/cars/color/{{color.colorId}}" *ngFor = "let color of colors" href="#" [class]="getCurrentColorClass(color)" aria-current="true" (click)="getCurrentColor(color)">
+                {{color.colorName}}
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
 
-    <tr *ngFor = "let color of colors">
-        <td>{{color.colorId}}</td>
-        <td>{{color.colorName}}</td>
-    </tr>
-</table>
