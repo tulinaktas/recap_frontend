@@ -9,6 +9,7 @@ import { BrandService } from 'src/app/services/brand.service';
 })
 export class BrandComponent implements OnInit {
   brands:Brand[] =[]
+  dataLoaded:boolean = false;
   constructor(private brandService:BrandService) { }
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class BrandComponent implements OnInit {
     this.brandService.getBrands().subscribe(
       responce =>{
         this.brands = responce.data
+        this.dataLoaded =true
       }
     )
   }

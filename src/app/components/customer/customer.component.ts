@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class CustomerComponent implements OnInit {
 
   customers:Customer[] = []
+  dataLoaded:boolean = false;
   constructor(private customerService:CustomerService) { }
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ getCustomers(){
   this.customerService.getCustomers().subscribe(
     responce =>{
       this.customers = responce.data;
+      this.dataLoaded =true;
     }
   )
 }

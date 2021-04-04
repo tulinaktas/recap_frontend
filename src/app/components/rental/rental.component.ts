@@ -12,6 +12,7 @@ export class RentalComponent implements OnInit {
 
   rentals:Rental[] = []
   rentalsDetails :RentalDetailsDto[] = []
+  dataLoaded:boolean = false;
   constructor(private rentalService:RentalService) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ getRentals(){
   this.rentalService.getRentals().subscribe(
     responce =>{
       this.rentals = responce.data
+      this.dataLoaded =true
     }
   )
 }
@@ -28,6 +30,7 @@ getRentalsDetail(){
   this.rentalService.getRentalsDetail().subscribe(
     responce =>{
       this.rentalsDetails = responce.data
+      this.dataLoaded = true
     }
   )
 }
