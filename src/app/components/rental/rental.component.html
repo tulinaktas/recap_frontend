@@ -7,10 +7,10 @@
         <th>Rental Date</th>
     </tr>
 </thead>
-    <tr *ngFor="let rental on rentalsDetail">
+    <tr *ngFor="let rental of rentalsDetails">
         <th>{{rental.brandName}}</th>
         <th>{{rental.fullName}}</th>
         <th>{{rental.rentDate}}</th>
-        <th>{{rental.rentalDate}}</th>
+        <th>{{rental.returnDate}}</th>
     </tr>
 </table>
