@@ -28,8 +28,8 @@ getRentals(){
 }
 getRentalsDetail(){
   this.rentalService.getRentalsDetail().subscribe(
-    responce =>{
-      this.rentalsDetails = responce.data
+    response =>{
+      this.rentalsDetails = response.data
       this.dataLoaded = true
     }
   )

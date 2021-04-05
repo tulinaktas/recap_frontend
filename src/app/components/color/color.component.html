@@ -10,7 +10,7 @@
             <span class="visually-hidden">Loading...</span>
         </div>
         <div *ngIf="dataLoaded==true" class="list-group">
-            <a routerLink ="/cars/color/{{color.colorId}}" *ngFor = "let color of colors" href="#" [class]="getCurrentColorClass(color)" aria-current="true" (click)="getCurrentColor(color)">
+            <a routerLink ="/cars/color/{{color.colorId}}" *ngFor = "let color of colors" href="#" [class]="getCurrentColorClass(color)" aria-current="true" (click)="setCurrentColor(color)">
                 {{color.colorName}}
             </a>
           </div>

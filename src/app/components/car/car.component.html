@@ -7,6 +7,7 @@
             <th>Brand</th>
             <th>Color</th>
             <th>Description</th>
+            <th>Model</th>
             <th>Daily Price</th>
         </tr>
     </thead>
@@ -14,6 +15,8 @@
         <td>{{car.brandName |uppercase}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.carName}}</td>
-        <td>{{car.dailyPrice}}</td>
+        <td>{{car.modelYear}}</td>
+        <td>{{car.dailyPrice}}</td>  
+        <button routerLink="car-detail/{{car.id}}" type="button" class="btn btn-secondary btn-sm mb-1" (click)=setCurrentCar(car)>Details</button>  
     </tr>
 </table>

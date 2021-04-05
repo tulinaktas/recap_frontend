@@ -10,7 +10,7 @@
             <span class="visually-hidden">Loading...</span>
         </div>
         <div *ngIf="dataLoaded==true" class="list-group">
-            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands" href="#" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="getCurrentBrand(brand)">
+            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands" href="#" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
                 {{brand.brandName}}
             </a>
             <h5 *ngIf="currentBrand">{{currentBrand.brandName}} sectiniz</h5>

@@ -19,13 +19,13 @@ export class BrandComponent implements OnInit {
 
   getBrands(){
     this.brandService.getBrands().subscribe(
-      responce =>{
-        this.brands = responce.data
+      response =>{
+        this.brands = response.data
         this.dataLoaded =true
       }
     )
   }
-  getCurrentBrand(brand:Brand){
+  setCurrentBrand(brand:Brand){
     this.currentBrand=brand
 }
   getCurrentBrandClass(brand:Brand){

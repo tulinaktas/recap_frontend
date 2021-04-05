@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarDetailsDto } from 'src/app/models/carDetailsDto';
 import { CarService } from 'src/app/services/car.service';
+import { CarDetailComponent } from '../car-detail/car-detail.component';
 
 @Component({
   selector: 'app-car',
@@ -11,9 +12,10 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
 
-  cars:Car[] =[]
-  carsDetail:CarDetailsDto[] =[]
+  cars:Car[];
+  carsDetail:CarDetailsDto[];
   dataLoaded:boolean=false;
+  currentCar:CarDetailsDto;
   constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -35,33 +37,37 @@ export class CarComponent implements OnInit {
 
   getCars(){
     this.carService.getCar().subscribe(
-      responce =>{
-        this.cars = responce.data
+      response =>{
+        this.cars = response.data
         this.dataLoaded = true
       }
     )
   }
   getCarsDetail(){
     this.carService.getCarsDetail().subscribe(
-      responce =>{
-        this.carsDetail =responce.data
+      response =>{
+        this.carsDetail =response.data
         this.dataLoaded = true
       }
     )
   }
   getCarsByColorId(colorId:number){
     this.carService.getCarsByColor(colorId).subscribe(
-      responce => {
-        this.carsDetail=responce.data;
+      response => {
+        this.carsDetail=response.data;
       }
     )
   }
 
   getCarsByBrandId(brandId:number){
     this.carService.getCarsByBrand(brandId).subscribe(
-      responce => {
-        this.carsDetail=responce.data;
+      response => {
+        this.carsDetail=response.data;
       }
     )
+  }
+
+  setCurrentCar(car:CarDetailsDto){
+    this.currentCar = car;
   }
 }

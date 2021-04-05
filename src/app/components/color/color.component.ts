@@ -24,7 +24,7 @@ getColors(){
     }
   )
 }
-getCurrentColor(color:Color){
+setCurrentColor(color:Color){
   this.currentColor=color;
 }
 
