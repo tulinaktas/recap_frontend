@@ -1,1 +1,43 @@
-{{carDetails.brandName}}
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor="let image of carImages" [class]="getCarousel(image)" data-bs-interval="10000">
+        <img src="https://localhost:44340/CarImages/{{image.imagePath}}" class="d-block w-100" alt="..." width="50px" >
+        <!-- <div class="carousel-caption d-none d-md-block">
+            <h5>...</h5>
+            <p>...</p>
+          </div> -->
+    </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+          <tr>
+              <th>Brand</th>
+              <th>Color</th>
+              <th>Model Year</th>
+              <th>Daily Price</th>
+              <th>Description</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{carDetails.brandName}}</td>
+              <td>{{carDetails.colorName}}</td>
+              <td>{{carDetails.modelYear}}</td>
+              <td>{{carDetails.dailyPrice}}</td>
+              <td>{{carDetails.carName}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+ 

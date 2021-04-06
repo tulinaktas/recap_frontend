@@ -30,9 +30,7 @@ export class CarComponent implements OnInit {
           else{
             this.getCarsDetail()
           }
-      }
-    )
-    this.getCarsDetail();
+      })
   }
 
   getCars(){
@@ -55,6 +53,7 @@ export class CarComponent implements OnInit {
     this.carService.getCarsByColor(colorId).subscribe(
       response => {
         this.carsDetail=response.data;
+        this.dataLoaded = true
       }
     )
   }
@@ -63,6 +62,7 @@ export class CarComponent implements OnInit {
     this.carService.getCarsByBrand(brandId).subscribe(
       response => {
         this.carsDetail=response.data;
+        this.dataLoaded = true
       }
     )
   }
