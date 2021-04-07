@@ -34,4 +34,7 @@ export class CarService {
   getCarImageByCarId(carId:number):Observable<ListResponseModel<CarImage>>{
     return this.httpClient.get<ListResponseModel<CarImage>>(this.apiUrl+"/carimages/getphotosbycarid?carId="+carId);
   }
+  getCarImages():Observable<ListResponseModel<CarImage>>{
+    return this.httpClient.get<ListResponseModel<CarImage>>(this.apiUrl+"/carimages/getall");
+  }
 }

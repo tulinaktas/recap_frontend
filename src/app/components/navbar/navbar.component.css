@@ -1,5 +1,5 @@
 .bg{
-    background-color:rgba(92, 15, 15, 0.61);
+    background-color:rgba(92, 15, 15, 0.644);
 }
 a{
     font-size:18px;
@@ -9,6 +9,6 @@ a{
 .btn-bg{
     font-weight:600;
     background-color: rgb(219, 201, 201);
-    color:rgb(51, 0, 0)
+    color:rgba(51, 0, 0, 0.658)
 
 }

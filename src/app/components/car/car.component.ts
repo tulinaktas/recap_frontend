@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarDetailsDto } from 'src/app/models/carDetailsDto';
+import { CarImage } from 'src/app/models/carImage';
 import { CarService } from 'src/app/services/car.service';
 import { CarDetailComponent } from '../car-detail/car-detail.component';
 
@@ -16,6 +17,7 @@ export class CarComponent implements OnInit {
   carsDetail:CarDetailsDto[];
   dataLoaded:boolean=false;
   currentCar:CarDetailsDto;
+  car:CarDetailsDto;
   constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -69,5 +71,15 @@ export class CarComponent implements OnInit {
 
   setCurrentCar(car:CarDetailsDto){
     this.currentCar = car;
+  }
+
+   getCarImagePath(car:CarDetailsDto){
+
+    if(car.imagePath){
+      return "https://localhost:44340/CarImages/"+car.imagePath
+    }
+    else{
+      return 'https://localhost:44340/CarImages/simge.jpg'
+    }
   }
 }

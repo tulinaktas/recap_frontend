@@ -1,3 +1,12 @@
 .accordion-header{
     background-color:gray;
 }
+.accordion-button{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:rgba(10, 10, 20, 0.671);
+    background-color:rgba(189, 125, 125, 0.603);
+}
+.accordion-button::after{
+    color:rgb(129, 112, 112);
+}

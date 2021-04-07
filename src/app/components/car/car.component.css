@@ -1,0 +1,15 @@
+.card-body{
+    color:rgb(44, 53, 71);
+    background-color: rgb(165, 170, 180);
+}
+.card-footer{
+    background-color:rgb(24, 27, 32);
+}
+.btnDetails{
+    font-size: 1.1rem;
+    margin-right: 3.6rem;
+}
+.btnRental{
+    font-size: 1.1rem;
+    margin-left: 4.22rem;
+}
