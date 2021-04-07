@@ -9,7 +9,8 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorComponent implements OnInit {
   currentColor:Color;
-  colors:Color[] = []
+  colors:Color[] = [];
+  searchColor:string;
   dataLoaded:boolean =false;
   constructor(private colorService:ColorService) { }
 

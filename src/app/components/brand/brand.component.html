@@ -10,11 +10,17 @@
             <span class="visually-hidden">Loading...</span>
         </div>
         <div *ngIf="dataLoaded==true" class="list-group">
-            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands" href="#" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
+          <div class="mb-3">
+            <label for="searchBrand" class="form-label">Search</label>
+            <input type="text" [(ngModel)]="searchBrand" class="form-control" id="searchBrand" placeholder="please enter the brand name..">
+          </div>
+          <div *ngIf="searchBrand">
+            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands | brandSearch:searchBrand" href="#" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
                 {{brand.brandName}}
             </a>
-            <h5 *ngIf="currentBrand">{{currentBrand.brandName}} sectiniz</h5>
+            <!-- <h5 *ngIf="currentBrand">{{currentBrand.brandName}} sectiniz</h5> -->
           </div>
+        </div>
       </div>
     </div>
   </div>

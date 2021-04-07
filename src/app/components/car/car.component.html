@@ -4,15 +4,20 @@
             <div class="accordion" id="accordionExample">
                 <app-color></app-color>
                 <app-brand></app-brand>
+                <br>
+                <app-filter></app-filter>
             </div>
         </div>
         <div class ="col-md-9">
             <div *ngIf="dataLoaded == false"  class="spinner-border text-secondary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            
+            <div class="mb-3">
+              <label for="searchCar" class="form-label">Search</label>
+              <input type="text" [(ngModel)]="searchCar" class="form-control" id="searchColor" placeholder="please enter the car name..">
+            </div>
             <div *ngIf="dataLoaded==true" class="row row-cols-1 row-cols-md-3 g-4">
-                <div *ngFor ="let car of carsDetail"  class="col">
+                <div *ngFor ="let car of carsDetail | carSearch:searchCar"  class="col">
                   <div class="card h-100">
                     <img [src]="getCarImagePath(car)" class="card-img-top" alt="...">
                     <div class="card-body">

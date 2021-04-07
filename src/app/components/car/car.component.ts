@@ -17,6 +17,7 @@ export class CarComponent implements OnInit {
   carsDetail:CarDetailsDto[];
   dataLoaded:boolean=false;
   currentCar:CarDetailsDto;
+  searchCar:string;
   car:CarDetailsDto;
   constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
 
