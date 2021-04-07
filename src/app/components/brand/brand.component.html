@@ -1,10 +1,10 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         Brand
       </button>
     </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
       <div class="accordion-body">
         <div *ngIf="dataLoaded == false"  class="spinner-border text-secondary" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -12,7 +12,7 @@
         <div *ngIf="dataLoaded==true" class="list-group">
           <div class="mb-3">
             <label for="searchBrand" class="form-label">Search</label>
-            <input type="text" [(ngModel)]="searchBrand" class="form-control" id="searchBrand" placeholder="please enter the brand name..">
+            <input type="text" [(ngModel)]="searchBrand" class="form-control" placeholder="please enter the brand name..">
           </div>
           <div *ngIf="searchBrand">
             <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands | brandSearch:searchBrand" href="#" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">

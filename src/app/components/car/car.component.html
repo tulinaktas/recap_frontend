@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="accordion" id="accordionExample">
+            <div class="accordion" id="accordion">
                 <app-color></app-color>
                 <app-brand></app-brand>
-                <br>
-                <app-filter></app-filter>
             </div>
+            <br>
+            <app-filter></app-filter>
         </div>
         <div class ="col-md-9">
             <div *ngIf="dataLoaded == false"  class="spinner-border text-secondary" role="status">

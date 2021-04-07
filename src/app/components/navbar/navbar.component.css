@@ -1,14 +1,14 @@
 .bg{
-    background-color:rgba(92, 15, 15, 0.644);
+    background-color: rgb(24, 27, 32);
 }
 a{
     font-size:18px;
     font-weight: 600;
-    color:rgba(10, 10, 20, 0.671)
+    color:rgb(151, 151, 151)
 }
 .btn-bg{
     font-weight:600;
-    background-color: rgb(219, 201, 201);
-    color:rgba(51, 0, 0, 0.658)
+    background-color: rgb(139, 141, 150);
+    color:rgba(0, 0, 0, 0.658)
 
 }

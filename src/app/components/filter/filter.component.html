@@ -1,15 +1,16 @@
    <br>
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
+   <div class="container">
+    <br>
+        <select class="form-select" [(ngModel)]="currentColorId" id="color">
+            <option [ngValue]="undefined">Please select a color</option>
+            <option *ngFor="let color of colors" [value]="color.colorId" [selected] ="setColor(color.colorId)" id="colorname">{{color.colorName}}</option>
+        </select>
+        <select class="form-select" [(ngModel)]="currentBrandId" id="brand">
+            <option [ngValue]="undefined">Please select a brand</option>
+            <option *ngFor="let brand of brands" [value] = "brand.brandId" [selected] ="setBrand(brand.brandId)" id="brandname">{{brand.brandName}}</option>
+        </select>
+        <button routerLink="/filter/{{currentColorId}}/{{currentBrandId}}" type="button" class="btn btn-dark " style="margin-left: 11.2rem;margin-top: .5rem;" >Search</button>
+    </div>
+   
       
 

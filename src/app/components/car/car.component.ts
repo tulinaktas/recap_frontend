@@ -19,12 +19,16 @@ export class CarComponent implements OnInit {
   currentCar:CarDetailsDto;
   searchCar:string;
   car:CarDetailsDto;
+  sayac:number;
   constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       (params) => {
-          if(params["colorId"]){
+        if (params["colorId"]&&params["brandId"]) {
+          this.getCarsByColorAndBrand(params["colorId"],params["brandId"])
+        }
+         else if(params["colorId"]){
             this.getCarsByColorId(params["colorId"])
           }
           else if(params["brandId"]){
@@ -69,13 +73,18 @@ export class CarComponent implements OnInit {
       }
     )
   }
+  getCarsByColorAndBrand(colorId:number,brandId:number){
+    this.carService.getCarsByColorAndBrand(colorId,brandId).subscribe(response=>{
+      this.carsDetail=response.data;
+      this.dataLoaded = true;
+    })
+  }
 
   setCurrentCar(car:CarDetailsDto){
     this.currentCar = car;
   }
 
    getCarImagePath(car:CarDetailsDto){
-
     if(car.imagePath){
       return "https://localhost:44340/CarImages/"+car.imagePath
     }
