@@ -20,6 +20,7 @@ import { ColorSearchPipe } from './pipes/color-search.pipe';
 import { BrandSearchPipe } from './pipes/brand-search.pipe';
 
 import {ToastrModule} from "ngx-toastr";
+import { VatAddedPipe } from './pipes/vat-added.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {ToastrModule} from "ngx-toastr";
     FilterComponent,
     CarSearchPipe,
     ColorSearchPipe,
-    BrandSearchPipe
+    BrandSearchPipe,
+    VatAddedPipe
   ],
   imports: [
     HttpClientModule,
