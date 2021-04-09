@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { RentalComponent } from './components/rental/rental.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { ListRentalComponent } from './components/list-rental/list-rental.component';
 
 import { CarSearchPipe } from './pipes/car-search.pipe';
 import { ColorSearchPipe } from './pipes/color-search.pipe';
@@ -33,6 +35,7 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
     NavbarComponent,
     CarDetailComponent,
     FilterComponent,
+    ListRentalComponent,
     CarSearchPipe,
     ColorSearchPipe,
     BrandSearchPipe,
@@ -46,6 +49,7 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
       positionClass:"toast-bottom-right"
     }),
     BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],

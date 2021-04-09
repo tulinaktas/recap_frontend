@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDetailsDto } from 'src/app/models/carDetailsDto';
 import { CarImage } from 'src/app/models/carImage';
 import { CarService } from 'src/app/services/car.service';
@@ -11,9 +12,10 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarDetailComponent implements OnInit {
 
+  currentCar:CarDetailsDto;
   carDetails:CarDetailsDto;
   carImages:CarImage[];
-  constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
+  constructor(private carService:CarService, private activatedRoute:ActivatedRoute, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
    this.activatedRoute.params.subscribe(params=>{
@@ -41,6 +43,10 @@ export class CarDetailComponent implements OnInit {
     else{
       return "carousel-item active";
     }
+  }
+
+  getCurrentCar(car:CarDetailsDto){
+     this.currentCar = car; 
   }
 
 }

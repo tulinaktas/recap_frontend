@@ -15,12 +15,9 @@
             <input type="text" [(ngModel)]="searchBrand" class="form-control" placeholder="please enter the brand name..">
           </div>
           <div *ngIf="searchBrand">
-            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands | brandSearch:searchBrand" href="#" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
+            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
                 {{brand.brandName}}
             </a>
-            <!-- <h5 *ngIf="currentBrand">{{currentBrand.brandName}} sectiniz</h5> -->
           </div>
         </div>
       </div>
-    </div>
-  </div>

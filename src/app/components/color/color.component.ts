@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -12,7 +13,9 @@ export class ColorComponent implements OnInit {
   colors:Color[] = [];
   searchColor:string;
   dataLoaded:boolean =false;
-  constructor(private colorService:ColorService) { }
+
+  @Output() colorNames = new EventEmitter<string[]>(); 
+  constructor(private colorService:ColorService,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.getColors();
@@ -26,6 +29,7 @@ export class ColorComponent implements OnInit {
   )
   }
 setCurrentColor(color:Color){
+  this.toastrService.show("Lists cars in "+color.colorName);
   this.currentColor=color;
 }
 
@@ -37,4 +41,5 @@ getCurrentColorClass(color:Color){
     return "list-group-item list-group-item-action";
   }
 }
+
 }

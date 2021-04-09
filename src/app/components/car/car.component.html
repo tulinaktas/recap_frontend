@@ -25,12 +25,11 @@
                       <p class="card-text">{{car.carName}}</p>
                     </div>
                     <div class="card-footer">
-                        <button routerLink="/car-detail/{{car.id}}" type="button" class="btnDetails btn-secondary btn-sm mb-1" (click)=setCurrentCar(car)>Details</button>
-                        
-                        <button  type="button" class="btnRental btn-secondary btn-sm mb-1">Rental</button>
+                        <button routerLink="/car-detail/{{car.id}}" type="button" mdbBtn color="light" class="waves-light" style="border-radius: .7rem;"(click)=setCurrentCar(car)>Details</button>
+                        <app-rental [car]=car></app-rental>
                     </div>
                   </div>
-                </div>
-              </div>
+             </div>
+          </div>
 </div>
 

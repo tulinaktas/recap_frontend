@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
@@ -12,7 +13,9 @@ export class BrandComponent implements OnInit {
   brands:Brand[] =[]
   searchBrand:string;
   dataLoaded:boolean = false;
-  constructor(private brandService:BrandService) { }
+  constructor(private brandService:BrandService, private toastrService:ToastrService) { }
+
+  @Output() brandNames= new EventEmitter<string[]>();
 
   ngOnInit(): void {
     this.getBrands();
@@ -27,7 +30,9 @@ export class BrandComponent implements OnInit {
     )
   }
   setCurrentBrand(brand:Brand){
+    this.toastrService.show("Lists cars in "+brand.brandName+" brand")
     this.currentBrand=brand
+    
 }
   getCurrentBrandClass(brand:Brand){
     if(this.currentBrand==brand){

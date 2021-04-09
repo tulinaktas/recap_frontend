@@ -9,7 +9,7 @@
             <option [ngValue]="undefined">Please select a brand</option>
             <option *ngFor="let brand of brands" [value] = "brand.brandId" [selected] ="setBrand(brand.brandId)" id="brandname">{{brand.brandName}}</option>
         </select>
-        <button routerLink="/filter/{{currentColorId}}/{{currentBrandId}}" type="button" class="btn btn-dark " style="margin-left: 11.2rem;margin-top: .5rem;" >Search</button>
+        <button routerLink="/filter/{{currentColorId}}/{{currentBrandId}}" type="button" mdbBtn color="dark" class="waves-light" style="margin-left: 8rem;margin-top: .5rem; border-radius: .7rem;" >Search</button>
     </div>
    
       

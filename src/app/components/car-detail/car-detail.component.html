@@ -42,7 +42,10 @@
 
         <dt class="col-sm-4">Description</dt>
         <dd class="col-sm-8">{{carDetails.carName}}</dd>
-        <button type="button" class="btn btn-dark" style="font-size: 1.6rem;">Rental</button>
+        
+        <div class="d-grid gap-2 mb-2" style="margin-right: .8rem;">
+            <app-rental [car]="carDetails"></app-rental>
+        </div>          
       </dl>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarDetailsDto } from 'src/app/models/carDetailsDto';
 import { CarImage } from 'src/app/models/carImage';
@@ -17,10 +18,16 @@ export class CarComponent implements OnInit {
   carsDetail:CarDetailsDto[];
   dataLoaded:boolean=false;
   currentCar:CarDetailsDto;
-  searchCar:string;
   car:CarDetailsDto;
-  sayac:number;
-  constructor(private carService:CarService, private activatedRoute:ActivatedRoute) { }
+
+  searchCar:string;
+  searchColor:string;
+  searchBrand:string;
+
+  colorNames:string[];
+  brandNames:string[];
+
+  constructor(private carService:CarService, private activatedRoute:ActivatedRoute, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -81,8 +88,10 @@ export class CarComponent implements OnInit {
   }
 
   setCurrentCar(car:CarDetailsDto){
-    this.currentCar = car;
+    this.toastrService.show("Redirects to "+car.brandName+" detail page")
+    this.currentCar = car;    
   }
+
 
    getCarImagePath(car:CarDetailsDto){
     if(car.imagePath){
