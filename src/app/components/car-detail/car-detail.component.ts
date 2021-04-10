@@ -12,8 +12,7 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarDetailComponent implements OnInit {
 
-  currentCar:CarDetailsDto;
-  carDetails:CarDetailsDto;
+  carDetails:CarDetailsDto = {id:0,brandName:"",carName:"",colorName:"",dailyPrice:0,modelYear:"",imagePath:""};
   carImages:CarImage[];
   constructor(private carService:CarService, private activatedRoute:ActivatedRoute, private toastrService:ToastrService) { }
 
@@ -43,10 +42,6 @@ export class CarDetailComponent implements OnInit {
     else{
       return "carousel-item active";
     }
-  }
-
-  getCurrentCar(car:CarDetailsDto){
-     this.currentCar = car; 
   }
 
 }

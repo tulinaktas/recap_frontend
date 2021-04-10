@@ -6,7 +6,7 @@
       <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div *ngFor="let image of carImages" [class]="getCarousel(image)" data-bs-interval="10000">
-              <img src="https://localhost:44340/CarImages/{{image.imagePath}}" class="d-block w-100" alt="..." width="50px" >
+              <img src="https://localhost:44340/CarImages/{{image.imagePath}}" class="d-block w-100 border border-dark rounded" alt="..." width="50px" >
               <!-- <div class="carousel-caption d-none d-md-block">
                   <h5>...</h5>
                   <p>...</p>
@@ -44,7 +44,7 @@
         <dd class="col-sm-8">{{carDetails.carName}}</dd>
         
         <div class="d-grid gap-2 mb-2" style="margin-right: .8rem;">
-            <app-rental [car]="carDetails"></app-rental>
+            <app-rental  [car]="carDetails"></app-rental>
         </div>          
       </dl>
     </div>

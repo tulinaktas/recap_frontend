@@ -14,12 +14,12 @@
             </div>
             <div class="mb-3">
               <label for="searchCar" class="form-label">Search</label>
-              <input type="text" [(ngModel)]="searchCar" class="form-control" id="searchColor" placeholder="please enter the car name..">
+              <input type="text" [(ngModel)]="searchCar" class="form-control" id="searchCar" placeholder="please enter the car name..">
             </div>
             <div *ngIf="dataLoaded==true" class="row row-cols-1 row-cols-md-3 g-4">
                 <div *ngFor ="let car of carsDetail | carSearch:searchCar"  class="col">
                   <div class="card h-100">
-                    <img [src]="getCarImagePath(car)" class="card-img-top" alt="...">
+                    <img [src]="getCarImagePath(car)" class="card-img-top border border-dark rounded" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{{car.brandName}} {{car.modelYear}}</h5>
                       <p class="card-text">{{car.carName}}</p>

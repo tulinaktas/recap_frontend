@@ -7,7 +7,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CarComponent } from './components/car/car.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
@@ -23,6 +22,8 @@ import { BrandSearchPipe } from './pipes/brand-search.pipe';
 
 import {ToastrModule} from "ngx-toastr";
 import { VatAddedPipe } from './pipes/vat-added.pipe';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CarComponent } from './components/car/car.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
     CarSearchPipe,
     ColorSearchPipe,
     BrandSearchPipe,
-    VatAddedPipe
+    VatAddedPipe,
+    PaymentComponent
   ],
   imports: [
     HttpClientModule,

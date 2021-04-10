@@ -1,4 +1,4 @@
-<button type="button" mdbBtn color="light" class="waves-light" style="border-radius: .7rem;"data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+<button type="button" mdbBtn color="light" class="waves-light float-right" style="border-radius: .7rem;"data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
   >Rent It</button>
 
 <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -7,38 +7,57 @@
     <!--Content-->
     <div class="modal-content text-center">
       <!--Header-->
-      <div class="modal-header d-flex justify-content-center" style="background-color: rgb(53, 60, 71);">
+      <div class="modal-header d-flex justify-content-center" style="background-color: rgba(24, 27, 32, 0.808)">
         <p class="heading">Rent</p>
       </div>
 
       <!--Body-->
-    <div class="modal-body" style="background-color: rgb(165, 170, 180); text-align: left;">
-        <div class="row">
-            <div class="col-md-5" style="font-size: 1.4rem; font-weight: bolder;">
-                <label for="brandName" style="color: black;">Brand:</label>
-                <br>
-                <label for="dailyprice" style="color: black;">Daily Price:</label>
-                <br>
-                <label for="dailyprice" style="color: black;">Rent Date:</label>
-                <br>
-                <label for="dailyprice" style="color: black;">Renturn Date:</label>
+    <div class="modal-body" style="background-color: rgba(215, 222, 235, 0.658); text-align: left;">
+
+      <div class="form-group row mb-2">   
+        <label class="col-4" for="brandName" style="color: black;">Brand:</label>
+            <div class="col-8" style="font-size: 1.2rem">
+              <input type="text" class = "form-control" style="color: black; background-color: white;" [value]="car.brandName" disabled>
             </div>
-            <div class="col-md-7">
-                <input type="text" style="color: black;" value="{{car.brandName}}" disabled>
-                <br>
-                <input type="text" style="color: black;" value="{{car.dailyPrice|vatAdded:10 |currency}}" disabled>
-                <br>
-                <input type="date" name="rentdate" id="rentDate">
-                <br>
-                <input type="date" name="returndate" id="returnDate">
+      </div>
+
+      <div class="form-group row mb-2">  
+        <label class="col-4" for="dailyprice" style="color: black;">Daily Price:</label>
+            <div class="col-8" style="font-size: 1.2rem">
+              <input type="text" class = "form-control" style="color: black;background-color: white;" [value]="car.dailyPrice|vatAdded:10 |currency" disabled>
             </div>
-           
-        </div>    
+      </div>
+
+      <div class="form-group row mb-2"> 
+        <label class="col-4" for="dailyprice" style="color: black;">Customers:</label>
+          <div class="col-8">
+            <select class="form-select" [(ngModel)]="currentCustomerId" id="customer">
+              <option *ngFor="let customer of customers" [value] = "customer.id" [selected]="setCustomer(customer)" id="customer">{{customer.companyName}}</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group row mb-2">  
+        <label class="col-4" for="dailyprice" style="color: black;">Rent Date:</label>
+            <div class="col-8" style="font-size: 1.2rem">
+              <input class = "form-control" [(ngModel)]="rentDate" type="date" name="rentdate" id="rentDate">
+            </div>
+      </div>
+
+      <div class="form-group row mb-2">  
+        <label class="col-4" for="dailyprice" style="color: black;">Renturn Date:</label>
+            <div class="col-8" style="font-size: 1.2rem">
+              <input class = "form-control" [(ngModel)]="returnDate" type="date" name="returndate" id="returnDate">
+            </div>
+      </div>
+
     </div>
 
       <!--Footer-->
-      <div class="modal-footer justify-content-center" style="background-color: rgb(53, 60, 71);">
-        <a type="button" mdbBtn color="light" class="waves-light" style="color: black; border-radius: .7rem;" mdbWavesEffect data-dismiss="modal">Rent</a>
+      <div class="modal-footer justify-content-center" style="background-color: rgba(24, 27, 32, 0.808)">
+        <a (click) = addRent() type="button" mdbBtn color="light" class="waves-light" style="color: black; border-radius: .7rem;" mdbWavesEffect data-dismiss="modal">
+          Rent
+        </a>
       </div>
     </div>
     <!--/.Content-->

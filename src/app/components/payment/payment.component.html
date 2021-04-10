@@ -1,0 +1,66 @@
+<div class="container m-5 mx-auto">
+    <div class="row main">
+        <div class="col-lg-6 col-12 my-5 rcol">
+            <h3 class="product text-center">CAR DETAILS</h3>
+            <div class="image text-center"><img class="border border-dark rounded" [src]="getCarImagePath(car)" width="500rem"></div>
+            <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Color</th>
+                            <th>Model Year</th>
+                            <th>Description</th>
+                            <th>Daily Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{car.brandName}}</td>
+                            <td>{{car.colorName}}</td>
+                            <td>{{car.modelYear}}</td>
+                            <td>{{car.carName}}</td>
+                            <td>{{car.dailyPrice | vatAdded:10 | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-lg-6 col-12 my-5 scol">
+            <div class="row r1">
+                <h6 class="text-muted">Dear {{customer.companyName}};<br></h6>
+            </div>
+            <br>
+            <div class="row r2">
+                <div class="col">
+                <h6 class="text-muted block">RENT TOTAL PRICE:</h6></div>
+                <div class="col">
+                <h4 class="text-danger block">{{totalPrice|vatAdded:10|currency}}</h4></div>
+            </div>
+            <div class="row r3">
+                <h3 class="payment">PAYMENT DETAILS</h3>
+            </div>
+            <div class="row r4">
+                <h6 class="payment-method">Select Payment method:</h6>
+            </div>
+            <div class="row r5">
+                <div class="col-2"><img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /></div>
+                <div class="col-2"><img src="https://img.icons8.com/color/48/000000/visa.png" /></div>
+                <div class="col-2"><img src="https://img.icons8.com/color/48/000000/amex.png" /></div>
+                <div class="col-2"><img src="https://img.icons8.com/color/48/000000/paypal.png" /></div>
+            </div>
+            <div class="row r6">
+                <form class="personalDetails">
+                    <div class="form-group"> <input type="text" class="form-control" placeholder="Cardholder Name"> </div>
+                    <div class="form-group"> <input type="text" class="form-control" placeholder="Card number"> </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-4"> <input type="text" class="form-control" placeholder="MM/YY"> </div>
+                            <div class="col-4 offset-2"> <input type="password" class="form-control" placeholder="CCV"> </div>
+                            <div class="col-2 th"><i class="far fa-credit-card"></i> </div>
+                        </div>
+                    </div> <button type="submit" class="btn btn-primary mt-3">PLACE RENT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
