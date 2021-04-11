@@ -37,20 +37,24 @@
           </div>
       </div>
 
-      <div class="form-group row mb-2">  
-        <label class="col-4" for="rentDate" style="color: black;">Rent Date:</label>
-            <div class="col-8" style="font-size: 1.2rem">
-              <input class = "form-control" [(ngModel)]="rentDate" min="{{ getDate(1) }}" value="{{ getDate(1) }}" type="date" name="rentdate" id="rentDate">
+      <form [formGroup] ="rangeFormGroup">
+        <div class="form-group row mb-2"> 
+          <label class="col-4" for="rent-returndate" style="color: black;">Date:</label>
+            <div class="col-8">
+              <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>  
+                <mat-date-range-input [rangePicker]="picker" separator="to" required [min]="today">   
+                  <input matStartDate placeholder="Rent Date" formControlName="rentDate">  
+                  <input matEndDate placeholder="Return Date" formControlName="returnDate">  
+                </mat-date-range-input>  
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                <mat-date-range-picker #picker></mat-date-range-picker>  
+                <mat-error>Date Range is mandatory</mat-error>  
+              </mat-form-field>  
             </div>
-      </div>
-
-      <div class="form-group row mb-2">  
-        <label class="col-4" for="returnDate" style="color: black;">Renturn Date:</label>
-            <div class="col-8" style="font-size: 1.2rem">
-              <input class = "form-control" [(ngModel)]="returnDate"min="{{ getDate(2) }}" value="{{ getDate(2) }}"  type="date" name="returndate" id="returnDate">
-            </div>
-      </div>
-
+        </div>
+      </form>
+      
     </div>
 
       <!--Footer-->

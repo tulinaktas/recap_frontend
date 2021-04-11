@@ -1,0 +1,16 @@
+
+dl.row{ 
+    margin-left: 3.5rem; 
+    border-radius: .5rem; 
+    border-style:solid; 
+    background-color:rgb(164, 162, 180);
+    color: rgb(24, 27, 32);
+}
+
+.col-sm-4{
+    margin-top:1rem;
+}
+
+.col-sm-8{
+    margin-top:1rem;
+}

@@ -21,8 +21,8 @@
                   <div class="card h-100">
                     <img [src]="getCarImagePath(car)" class="card-img-top border border-dark rounded" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">{{car.brandName}} {{car.modelYear}}</h5>
-                      <p class="card-text">{{car.carName}}</p>
+                      <h5 class="card-title" style="font-size: 1.3rem;">{{car.brandName}} {{car.modelYear}}</h5>
+                      <p class="card-text"style="font-size: .9rem;">{{car.carName}}</p>
                     </div>
                     <div class="card-footer">
                         <button routerLink="/car-detail/{{car.id}}" type="button" mdbBtn color="light" class="waves-light" style="border-radius: .7rem;"(click)=setCurrentCar(car)>Details</button>

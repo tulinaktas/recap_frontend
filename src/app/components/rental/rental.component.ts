@@ -1,6 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators} from "@angular/forms"
+import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
 import { ActivatedRoute, RouteConfigLoadEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetailsDto } from 'src/app/models/carDetailsDto';
@@ -17,67 +16,68 @@ import { RentalService } from 'src/app/services/rental.service';
 })
 export class RentalComponent implements OnInit {
 
-  rentals:Rental[] = [];
-  customers:Customer[] = [];
-  currentCustomerId:number;
-  rentDate:Date;
-  returnDate:Date;
-  rentalsDetails :RentalDetailsDto[] = []
-  dataLoaded:boolean = false;
+  rentals: Rental[] = [];
+  customers: Customer[] = [];
+  currentCustomerId: number;
+  rentalsDetails: RentalDetailsDto[] = []
+  dataLoaded: boolean = false;
 
-  @Input() car:CarDetailsDto
-  rental:Rental;
+  @Input() car: CarDetailsDto;
 
-  constructor(private rentalService:RentalService, private customerService:CustomerService, private router:Router,
-    private activatedRoute:ActivatedRoute, private toastrService:ToastrService, private formBuilder:FormBuilder) { }
+  today = new Date();
+  rangeFormGroup = new FormGroup({
+    rentDate: new FormControl("", Validators.required),
+    returnDate: new FormControl("", Validators.required)
+  })
+
+  constructor(
+    private rentalService: RentalService,
+    private customerService: CustomerService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getCustomers();
   }
 
-  // createRentForm(){
-  //   this.rentForm = this.formBuilder.group({
-  //     customerId:["",Validators.required],
-  //     rentDate:["",Validators.required],
-  //     returnDate:["",Validators.required]
-  //   })
-  // }
-  getCustomers(){
-    this.customerService.getCustomers().subscribe(response=>{
-      this.customers =response.data;
+  getCustomers() {
+    this.customerService.getCustomers().subscribe(response => {
+      this.customers = response.data;
     })
   }
-
-  getDate(day: number) {
-    var today = new Date();
-    today.setDate(today.getDate()+day);
-    return today.toISOString().slice(0, 10)
-  }
- 
-  addRent(){
-    let addedRental:Rental = {
-      carId : this.car.id,
-      customerId : parseInt(this.currentCustomerId.toString()),
-      rentDate : this.rentDate,
-      returnDate : this.returnDate
+  addRent() {
+    // let addedRental:Rental = {
+    //   carId : this.car.id,
+    //   customerId : parseInt(this.currentCustomerId.toString()),
+    //   rentDate: this.rangeFormGroup.value('rentDate'),
+    //   returnDate: this.rangeFormGroup.value('returnDate')
+    // }
+    if (this.currentCustomerId != undefined) {
+      let addedRental = Object.assign({ carId: this.car.id }, { customerId: parseInt(this.currentCustomerId.toString()) }, this.rangeFormGroup.value);
+      console.log(addedRental.customerId, " ", addedRental.rentDate)
+      if (this.rangeFormGroup.valid) {
+        this.rentalService.rent(addedRental).subscribe(response => {
+          this.toastrService.success(response.message);
+          this.router.navigate(["/payment/", JSON.stringify(addedRental)]);
+        }
+          , responseError => {
+            if (responseError.error.ValidationErrors.length > 0)
+              for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
+                this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage, "Validation Error");
+              }
+          });
+      } else {
+        this.toastrService.error("Information is missing");
+      }
+    } else {
+      this.toastrService.error("Information is missing");
     }
-    console.log(addedRental.rentDate," ");
-    this.rentalService.rent(addedRental).subscribe(response =>{
-      this.toastrService.success("Başarılı.. Ödeme Sayfasına Yönlendiriliyorsunuz");
-      this.router.navigate(["/payment/",JSON.stringify(addedRental)]);
-    },responseError=>{
-      if(responseError.error.ValidationErrors.length>0)
-      for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
-        this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage,"Error");        
-      }else{
-        this.toastrService.error(responseError.error);
-      }});
-    
-    //console.log(JSON.stringify(addedRental))
   }
 
-  setCustomer(customer:Customer){
-    return(this.currentCustomerId === customer.id)?true:false;
+  setCustomer(customer: Customer) {
+    return (this.currentCustomerId === customer.id) ? true : false;
   }
 
 }
