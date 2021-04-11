@@ -1,5 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators} from "@angular/forms"
 import { ActivatedRoute, RouteConfigLoadEnd, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDetailsDto } from 'src/app/models/carDetailsDto';
 import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
@@ -25,35 +28,54 @@ export class RentalComponent implements OnInit {
   @Input() car:CarDetailsDto
   rental:Rental;
 
-  constructor(private rentalService:RentalService, private customerService:CustomerService, private router:Router,private activatedRoute:ActivatedRoute) { }
+  constructor(private rentalService:RentalService, private customerService:CustomerService, private router:Router,
+    private activatedRoute:ActivatedRoute, private toastrService:ToastrService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.getCustomers();
   }
 
+  // createRentForm(){
+  //   this.rentForm = this.formBuilder.group({
+  //     customerId:["",Validators.required],
+  //     rentDate:["",Validators.required],
+  //     returnDate:["",Validators.required]
+  //   })
+  // }
   getCustomers(){
     this.customerService.getCustomers().subscribe(response=>{
       this.customers =response.data;
     })
   }
 
+  getDate(day: number) {
+    var today = new Date();
+    today.setDate(today.getDate()+day);
+    return today.toISOString().slice(0, 10)
+  }
+ 
   addRent(){
     let addedRental:Rental = {
       carId : this.car.id,
-      customerId : this.currentCustomerId,
+      customerId : parseInt(this.currentCustomerId.toString()),
       rentDate : this.rentDate,
       returnDate : this.returnDate
     }
-    this.router.navigate(["/payment/",JSON.stringify(addedRental)])
+    console.log(addedRental.rentDate," ");
+    this.rentalService.rent(addedRental).subscribe(response =>{
+      this.toastrService.success("Başarılı.. Ödeme Sayfasına Yönlendiriliyorsunuz");
+      this.router.navigate(["/payment/",JSON.stringify(addedRental)]);
+    },responseError=>{
+      if(responseError.error.ValidationErrors.length>0)
+      for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
+        this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage,"Error");        
+      }else{
+        this.toastrService.error(responseError.error);
+      }});
+    
     //console.log(JSON.stringify(addedRental))
   }
 
-  
-  // calculateTotalPrice(dailyPrice:number):number{
-  //   return (this.returnDate.getDate()-this.rentDate.getDate())*dailyPrice;
-  // }
-
-  
   setCustomer(customer:Customer){
     return(this.currentCustomerId === customer.id)?true:false;
   }
