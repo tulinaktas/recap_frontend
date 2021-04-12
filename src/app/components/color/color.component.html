@@ -14,14 +14,12 @@
             <label for="searchColor" class="form-label">Search</label>
             <input type="text" [(ngModel)]="searchColor" class="form-control" placeholder="please enter the color name..">
           </div>
-          <div *ngIf ="searchColor">
-            <a  routerLink ="/cars/color/{{color.colorId}}" *ngFor = "let color of colors | colorSearch:searchColor" [class]="getCurrentColorClass(color)" aria-current="true" (click)="setCurrentColor(color)">
+          <li  [class]="getAllCarsClass()" routerLink = "/cars">All Colors</li>
+            <li routerLink ="/cars/color/{{color.colorId}}" *ngFor = "let color of colors | colorSearch:searchColor" [class]="getCurrentColorClass(color)" aria-current="true" (click)="setCurrentColor(color)">
                 {{color.colorName}}
-            </a>
-          </div>
+            </li>
         </div>
         </div>
       </div>
-      
     </div>
 

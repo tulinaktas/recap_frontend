@@ -41,5 +41,12 @@ getCurrentColorClass(color:Color){
     return "list-group-item list-group-item-action";
   }
 }
-
+getAllCarsClass(){
+  if(!this.currentColor){
+    return "list-group-item active"
+   }
+   else{
+    return "list-group-item"
+   }
+}
 }

@@ -25,6 +25,7 @@ export class RentalComponent implements OnInit {
   @Input() car: CarDetailsDto;
 
   today = new Date();
+
   rangeFormGroup = new FormGroup({
     rentDate: new FormControl("", Validators.required),
     returnDate: new FormControl("", Validators.required)
@@ -35,8 +36,7 @@ export class RentalComponent implements OnInit {
     private customerService: CustomerService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService,
-    private formBuilder: FormBuilder) { }
+    private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -47,26 +47,25 @@ export class RentalComponent implements OnInit {
       this.customers = response.data;
     })
   }
+  getParseDate(date:Date){
+    return JSON.parse(date.toString())
+  }
   addRent() {
     // let addedRental:Rental = {
     //   carId : this.car.id,
     //   customerId : parseInt(this.currentCustomerId.toString()),
-    //   rentDate: this.rangeFormGroup.value('rentDate'),
-    //   returnDate: this.rangeFormGroup.value('returnDate')
+    //   rentDate: getParse(rentDate),
+    //   returnDate: this.returnDate
     // }
     if (this.currentCustomerId != undefined) {
       let addedRental = Object.assign({ carId: this.car.id }, { customerId: parseInt(this.currentCustomerId.toString()) }, this.rangeFormGroup.value);
-      console.log(addedRental.customerId, " ", addedRental.rentDate)
       if (this.rangeFormGroup.valid) {
         this.rentalService.rent(addedRental).subscribe(response => {
           this.toastrService.success(response.message);
           this.router.navigate(["/payment/", JSON.stringify(addedRental)]);
         }
-          , responseError => {
-            if (responseError.error.ValidationErrors.length > 0)
-              for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
-                this.toastrService.error(responseError.error.ValidationErrors[i].ErrorMessage, "Validation Error");
-              }
+        , responseError => {
+            this.toastrService.error(responseError.error.message)
           });
       } else {
         this.toastrService.error("Information is missing");

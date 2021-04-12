@@ -14,10 +14,9 @@
             <label for="searchBrand" class="form-label">Search</label>
             <input type="text" [(ngModel)]="searchBrand" class="form-control" placeholder="please enter the brand name..">
           </div>
-          <div *ngIf="searchBrand">
-            <a routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
+            <li  [class]="getAllCarsClass()" routerLink = "/cars">All Brands</li>
+            <li routerLink= "/cars/brand/{{brand.brandId}}" *ngFor = "let brand of brands" [class]="getCurrentBrandClass(brand)" aria-current="true" (click)="setCurrentBrand(brand)">
                 {{brand.brandName}}
-            </a>
-          </div>
+            </li>
         </div>
       </div>
