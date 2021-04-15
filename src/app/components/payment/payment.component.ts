@@ -9,6 +9,7 @@ import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
 import { CreditCardService } from 'src/app/services/credit-card.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { PaymentService } from 'src/app/services/payment.service';
 import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class PaymentComponent implements OnInit {
 
   totalPrice:number=0;
 
-  rental:Rental={id:0,carId:0,customerId:0,rentDate:null,returnDate:null};
+  rental:Rental={carId:0,customerId:0,rentDate:null,returnDate:null};
   car:CarDetailsDto={id:0,carName:"",colorName:"",brandName:"",imagePath:"",dailyPrice:0,modelYear:""};
   customer:Customer={id:0,companyName:"",userId:0};
   customerCreditCard:CreditCard;
@@ -33,6 +34,7 @@ export class PaymentComponent implements OnInit {
   private customerService:CustomerService,
   private rentalService:RentalService,
   private creditCardService:CreditCardService,
+  private paymentService:PaymentService,
   private toastrService:ToastrService,
   private formBuilder:FormBuilder,
   private router:Router
@@ -81,23 +83,43 @@ export class PaymentComponent implements OnInit {
   }
 
   payment(){
-    let creditCard = Object.assign({customerId:this.rental.customerId},this.creditCardForm.value);
-    if (this.customerCreditCard != undefined) {
-      //ödeme işlemi
+    let creditCard:CreditCard = Object.assign({customerId:this.rental.customerId},{amount:this.totalPrice}, this.creditCardForm.value);
+    if(this.customerCreditCard != undefined){
+      if (this.customerCreditCard.cardNumber == creditCard.cardNumber) {
+        this.customerCreditCard.amount = creditCard.amount;
+        this.pay(this.customerCreditCard)   
+      }
     }else{
       this.creditCardService.addCreditCard(creditCard).subscribe(response=>{
-        this.rentalService.rent(this.rental).subscribe(response =>{
-          //ödeme işlemi
-          this.toastrService.success(response.message);
-        },responseError =>{
-          this.toastrService.error(responseError.error.message);
-          this.router.navigate(["/cars/"]);
-        })
-      })
-    }
+      this.toastrService.success(response.message);
+      this.customerCreditCard = creditCard;
+      this.pay(this.customerCreditCard)   
+    },responseError =>{
+      this.toastrService.error("kredi kartı eklenemiyor");
+     // this.router.navigate(["/cars/"]);
+    })
+  }
   }
 
+  pay(creditCard:CreditCard){
+    console.log(creditCard)
+    this.paymentService.payment(creditCard).subscribe(response =>{
+        this.rent()
+        this.toastrService.success(response.message)
+    },responseError =>{
+        this.toastrService.error("your balance is not enough")
+       // this.router.navigate(["/cars/"]);
+    })
+  }
 
+  rent(){
+    this.rentalService.rent(this.rental).subscribe(response =>{
+      this.toastrService.success(response.message);
+      },responseError =>{
+        this.toastrService.error(responseError.error.message);
+      //  this.router.navigate(["/cars/"]);
+      })
+  }
 
   price(){
     var returnDate = new Date(this.rental.returnDate.toString());
@@ -105,7 +127,6 @@ export class PaymentComponent implements OnInit {
     var daysCount = returnDate.getTime() - rentDate.getTime();
 
     var numberOfDays = Math.ceil(daysCount/(1000*3600*24));
-
     this.totalPrice = numberOfDays * this.car.dailyPrice;
     return this.totalPrice;
   }

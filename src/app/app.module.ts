@@ -7,6 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatDatepickerModule } from '@angular/material/datepicker'  
 import { MatNativeDateModule } from '@angular/material/core'  
 import { MatFormFieldModule } from '@angular/material/form-field'  
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,7 +62,8 @@ import { CarComponent } from './components/car/car.component';
     MatFormFieldModule, 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
