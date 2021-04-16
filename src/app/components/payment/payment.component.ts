@@ -78,7 +78,7 @@ export class PaymentComponent implements OnInit {
     this.creditCardService.getCreditCardByCustomerId(customerId).subscribe(response=>{
       this.customerCreditCard = response.data;
     },responseError=>{
-      this.toastrService.error(responseError.error.message);
+      this.toastrService.error(responseError.error.message); 
     })
   }
 
@@ -96,7 +96,7 @@ export class PaymentComponent implements OnInit {
       this.pay(this.customerCreditCard)   
     },responseError =>{
       this.toastrService.error("kredi kartı eklenemiyor");
-     // this.router.navigate(["/cars/"]);
+      this.router.navigate(["/cars/"]);
     })
   }
   }
@@ -108,7 +108,7 @@ export class PaymentComponent implements OnInit {
         this.toastrService.success(response.message)
     },responseError =>{
         this.toastrService.error("your balance is not enough")
-       // this.router.navigate(["/cars/"]);
+        this.router.navigate(["/cars/"]);
     })
   }
 
@@ -117,7 +117,7 @@ export class PaymentComponent implements OnInit {
       this.toastrService.success(response.message);
       },responseError =>{
         this.toastrService.error(responseError.error.message);
-      //  this.router.navigate(["/cars/"]);
+        this.router.navigate(["/cars/"]);
       })
   }
 

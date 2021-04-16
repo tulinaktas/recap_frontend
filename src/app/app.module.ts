@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatDatepickerModule } from '@angular/material/datepicker'  
 import { MatNativeDateModule } from '@angular/material/core'  
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatFormFieldModule } from '@angular/material/form-field'  
 import { DatePipe } from '@angular/common';
 
@@ -59,11 +60,13 @@ import { CarComponent } from './components/car/car.component';
     ReactiveFormsModule,
     MatDatepickerModule,  
     MatNativeDateModule,    
-    MatFormFieldModule, 
+    MatFormFieldModule,
     AppRoutingModule
   ],
   providers: [
-    DatePipe],
+    DatePipe,
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

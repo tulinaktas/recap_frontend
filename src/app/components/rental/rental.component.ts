@@ -35,14 +35,11 @@ export class RentalComponent implements OnInit {
     returnDate: new FormControl("", Validators.required)
   })
 
-
   constructor(
     private rentalService: RentalService,
     private customerService: CustomerService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService,
-    private datePipe:DatePipe) { }
+    private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -54,27 +51,18 @@ export class RentalComponent implements OnInit {
     })
   }
  
-
   addRent() {
-     console.log(this.rangeFormGroup.value.rentDate.toUTCString());
-     console.log(this.rangeFormGroup.value.rentDate.toLocaleDateString());
-     console.log(this.rangeFormGroup.value.rentDate.toLocaleString());
-     console.log(this.rangeFormGroup.value.rentDate.toLocaleTimeString());
-     console.log(this.rangeFormGroup.value.rentDate.toString());
-     console.log(this.rangeFormGroup.value.rentDate.toTimeString());
-    // this.rangeFormGroup.value.rentDate = moment.utc(this.rangeFormGroup.value.rentDate).format()
-    // this.rangeFormGroup.value.returnDate = moment.utc(this.rangeFormGroup.value.returnDate).format()
     if (this.currentCustomerId != undefined) {
-      let addedRental = Object.assign({ carId: this.car.id},{ customerId: parseInt(this.currentCustomerId.toString())}, this.rangeFormGroup.value);
+      let addedRental = {
+        carId: this.car.id, 
+        customerId: parseInt(this.currentCustomerId.toString()),
+        rentDate: this.getDate(this.rangeFormGroup.value.rentDate), 
+        returnDate: this.getDate(this.rangeFormGroup.value.returnDate)
+      };
+
+      console.log(this.rangeFormGroup.value.rentDate)
       console.log(addedRental.rentDate);
       if (this.rangeFormGroup.valid) {
-        // this.rentalService.rent(addedRental).subscribe(response => {
-        //   this.toastrService.success(response.message);
-      
-        // }
-        // , responseError => {
-        //     this.toastrService.error(responseError.error.message)
-        //   });
         this.router.navigate(["/payment/", JSON.stringify(addedRental)]);
       } else {
         this.toastrService.error("Information is missing");
@@ -82,6 +70,10 @@ export class RentalComponent implements OnInit {
     } else {
       this.toastrService.error("Information is missing");
     }
+  }
+
+  getDate(date:Date):Date{
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000);
   }
 
   setCustomer(customer: Customer) {
