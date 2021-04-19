@@ -57,8 +57,6 @@ export class PaymentComponent implements OnInit {
     })
     this.getCarDetail(this.rental.carId);
     this.getCustomer(this.rental.customerId);
-    this.getCreditCardByCustomerId(this.rental.customerId);
-
     this.createCreditCardAddForm();
   }
 
@@ -83,6 +81,7 @@ export class PaymentComponent implements OnInit {
   }
 
   payment(){
+    this.getCreditCardByCustomerId(this.rental.customerId);
     let creditCard:CreditCard = Object.assign({customerId:this.rental.customerId},{amount:this.totalPrice}, this.creditCardForm.value);
     if(this.customerCreditCard != undefined){
       if (this.customerCreditCard.cardNumber == creditCard.cardNumber) {

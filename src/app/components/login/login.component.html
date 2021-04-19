@@ -1,0 +1,102 @@
+<body class="a">
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label
+        for="tab-1"
+        class="tab"
+        >Sign In</label
+      >
+      <input id="tab-2" type="radio" name="tab" class="sign-up" /><label
+        for="tab-2"
+        class="tab"
+        >Sign Up</label
+      >
+      <div class="login-form">
+        <div class="sign-in-htm">
+          <form [formGroup]="loginForm">
+            <div class="group">
+              <label for="email" class="label">Email</label>
+              <input
+                id="email1"
+                type="text"
+                class="input"
+                formControlName="email"
+              />
+            </div>
+            <div class="group">
+              <label for="password" class="label">Password</label>
+              <input
+                id="password1"
+                type="password"
+                class="input"
+                data-type="password"
+                formControlName="password"
+              />
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked />
+              <label for="check"
+                ><span class="icon"></span> Keep me Signed in</label
+              >
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign In" (click) = "login()" />
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <a href="#forgot">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+        <div class="sign-up-htm">
+          <form [formGroup]="registerForm">
+            <div class="group">
+              <label for="first-name" class="label">First Name</label>
+              <input
+                id="firstName"
+                type="text"
+                class="input"
+                formControlName="firstName"
+              />
+            </div>
+            <div class="group">
+              <label for="last-name" class="label">Last Name</label>
+              <input
+                id="lastName"
+                type="text"
+                class="input"
+                formControlName="lastName"
+              />
+            </div>
+            <div class="group">
+              <label for="email" class="label">Email</label>
+              <input
+                id="email2"
+                type="text"
+                class="input"
+                formControlName="email"
+              />
+            </div>
+            <div class="group">
+              <label for="password" class="label">Password</label>
+              <input
+                id="password2"
+                type="password"
+                class="input"
+                data-type="password"
+                formControlName="password"
+              />
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign Up" />
+            </div>
+            <hr />
+            <div class="foot-lnk">
+              <label for="tab-1">Already Member?</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

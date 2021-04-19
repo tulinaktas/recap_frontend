@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  loginForm:FormGroup;
+  registerForm:FormGroup;
+
+  constructor(private formBuilder:FormBuilder, private authService:AuthService,private toastrService:ToastrService) { }
+
+
+  createLoginForm(){
+    this.loginForm = this.formBuilder.group({
+      email : ["",Validators.required],
+      password : ["",Validators.required]
+    })
+  }
+
+  createRegisterForm(){
+    this.registerForm = this.formBuilder.group({
+      firstName : ["",Validators.required],
+      lastName : ["",Validators.required],
+      email : ["",Validators.required],
+      password : ["",Validators.required]
+    })
+  }
+
+
+
+  ngOnInit(): void {
+
+    this.createLoginForm();
+    this.createRegisterForm();
+  }
+
+
+  login(){
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value)
+      let user = Object.assign(this.loginForm.value);
+      console.log(user)
+      this.authService.login(user).subscribe(response=>{
+        console.log(response.data)
+        this.toastrService.success(response.message);
+        localStorage.setItem("token",response.data.token);
+      },responseError=>{
+        this.toastrService.error(responseError.error)
+      })
+    }
+  }
+  
+  register(){
+    if(this.registerForm.valid){
+      let user = Object.assign(this.registerForm.value);
+      this.authService.register(user).subscribe(response=>{
+        this.toastrService.success(response.message);
+        localStorage.setItem("token",response.data.token);
+      },responseError=>{
+        this.toastrService.error(responseError.error);
+      })
+    }
+  }
+  
+}

@@ -6,7 +6,9 @@ import { CarComponent } from './components/car/car.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { ListRentalComponent } from './components/list-rental/list-rental.component';
+import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
 {path:"", pathMatch:"full", component:CarComponent},
@@ -20,7 +22,8 @@ const routes: Routes = [
 {path:"car-detail/:carId",component:CarDetailComponent},
 {path:"cars/car-detail/:carId",component:CarDetailComponent},
 {path:"filter/:colorId/:brandId",component:CarComponent},
-{path:"payment/:rental",component:PaymentComponent}
+{path:"payment/:rental",component:PaymentComponent, canActivate:[LoginGuard]},
+{path:"login",component:LoginComponent}
 ];
 
 @NgModule({

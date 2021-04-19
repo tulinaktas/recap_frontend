@@ -7,7 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatDatepickerModule } from '@angular/material/datepicker'  
 import { MatNativeDateModule } from '@angular/material/core'  
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { MatFormFieldModule } from '@angular/material/form-field'  
+import { MatFormFieldModule } from '@angular/material/form-field';  
 import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +29,7 @@ import {ToastrModule} from "ngx-toastr";
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CarComponent } from './components/car/car.component';
-
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,8 @@ import { CarComponent } from './components/car/car.component';
     ColorSearchPipe,
     BrandSearchPipe,
     VatAddedPipe,
-    PaymentComponent
+    PaymentComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
