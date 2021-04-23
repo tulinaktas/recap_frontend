@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/registerModel';
@@ -13,9 +13,12 @@ export class AuthService {
 
   apiUrl = "https://localhost:44340/api";
 
+  email = new EventEmitter<string>();
+
   constructor(private httpClient:HttpClient) { }
 
   login(user:LoginModel):Observable<SingleResponseModel<TokenModel>>{
+    this.email.emit(user.email);
     return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"/auth/login",user);
   }
 

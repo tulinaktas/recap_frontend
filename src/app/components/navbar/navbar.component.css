@@ -1,14 +1,25 @@
-.bg{
-    background-color: rgb(24, 27, 32);
+.navbar {
+  background-color: rgb(24, 27, 32);
 }
-a{
-    font-size:18px;
-    font-weight: 600;
-    color:rgb(151, 151, 151)
+.navbar .navbar-nav .nav-link {
+  color: rgb(151, 151, 151);
 }
-.btn-bg{
-    font-weight:600;
-    background-color: rgb(139, 141, 150);
-    color:rgba(0, 0, 0, 0.658)
+.navbar .navbar-nav .nav-link:hover {
+  color: #707070;
+}
+.navbar .navbar-nav .active > .nav-link {
+  color: #707070;
+}
 
+footer a.text-light:hover {
+  color: #707070 !important;
+  text-decoration: none;
+}
+footer .cizgi {
+  border-right: 1px solid #535e67;
+}
+@media (max-width: 992px) {
+  footer .cizgi {
+    border-right: none;
+  }
 }
