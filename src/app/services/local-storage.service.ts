@@ -28,7 +28,7 @@ export class LocalStorageService {
     localStorage.setItem("currentUser",user.firstName+" "+user.lastName);
   }
 
-  removeCurrentCustomer(user:User){
+  removeCurrentCustomer(){
     localStorage.removeItem("currentUser");
   }
 

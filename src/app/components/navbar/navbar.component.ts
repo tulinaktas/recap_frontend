@@ -14,13 +14,21 @@ export class NavbarComponent implements OnInit {
   user:string;
 
   constructor(private authService:AuthService, private userService:UserService, private localStorageService:LocalStorageService) {
-    this.user = this.localStorageService.getCurrentUser();
+  
    }
 
   ngOnInit(): void {
-   
+    this.user = this.localStorageService.getCurrentUser();
   }
 
+  details(){
+    
+  }
+
+  logOut(){
+    this.localStorageService.deleteToken();
+    this.localStorageService.removeCurrentCustomer();
+  }
 
   isLogin(){
     if(this.authService.isAuthenticated()){

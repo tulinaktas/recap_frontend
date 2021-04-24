@@ -19,10 +19,17 @@
           <li *ngIf="!isLogin()"  class="nav-item pl-1">
             <a class="nav-link" routerLink="/login"><i class="fa fa-arrow-right fa-fw mr-1"></i>Sign In</a>
           </li>
-          <li *ngIf="isLogin()"  class="nav-item pl-1">
-            <a class="nav-link"><i class="fa fa-user fa-fw mr-1"></i>Welcome {{user}}</a>
-          </li>
+            <!-- <a class="nav-link"><i class="fa fa-user fa-fw mr-1"></i>Welcome {{user}}</a> -->
         </ul>
+        <div *ngIf="isLogin()" class="dropdown">
+          <button class="btn btn-light btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <p class="fa fa-user"> {{user}}</p>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" (click) = "details()">Profile</a></li>
+            <li><a class="dropdown-item" (click) = "logOut()">Log out</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>

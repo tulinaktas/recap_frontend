@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
         this.toastrService.success(response.message);
         this.getUser(user.email);
         this.localStorageService.addToken(response.data);
+        this.router.navigate(["/cars"])
       },responseError=>{
         this.toastrService.error(responseError.error)
       })

@@ -15,11 +15,11 @@ footer a.text-light:hover {
   color: #707070 !important;
   text-decoration: none;
 }
+.btn{
+    padding: .4rem 1.14rem;
+    font-size: .91rem;
+    margin: 0.3rem;
+}
 footer .cizgi {
   border-right: 1px solid #535e67;
-}
-@media (max-width: 992px) {
-  footer .cizgi {
-    border-right: none;
-  }
 }
