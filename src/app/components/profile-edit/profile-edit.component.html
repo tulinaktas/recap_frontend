@@ -1,0 +1,103 @@
+    <div class="page-wrapper">
+        <div class="main">
+            <div class="main-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-3">
+                            <div class="sidebar">
+                                    <div class="user-photo">
+                                        <a>
+                                        <img src="../../../assets/defaultProfilePhoto.png" alt="User Photo">
+                                        </a>
+                                    </div><!-- /.user-photo -->
+                            </div><!-- /.sidebar -->
+                        </div><!-- /.col-* -->
+
+                        <div class="col-sm-8 col-lg-9">
+                            <div class="content">
+                                <div class="page-title">
+                                    <h1>Edit Profile</h1>
+                                </div><!-- /.page-title -->
+    
+                                <div class="background-white p20 mb30">
+                                    <h3 class="page-title" >
+                                        Contact Information
+                                        <a class="btn btn-primary btn-xs pull-right" style="color: white;" (click)="updatedUser()">Update</a>
+                                    </h3>
+    
+                                    <form class="row" [formGroup] = "updatedUserForm">
+                                        <div class="form-group col-sm-6">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="firstName" class="form-control" value="firstName" >
+                                        </div><!-- /.form-group -->
+    
+                                        <div class="form-group col-sm-6">
+                                            <label>Surname</label>
+                                            <input type="text" formControlName="lastName" class="form-control" value="lastName"  >
+                                        </div><!-- /.form-group -->
+    
+                                        <div class="form-group col-sm-6">
+                                            <label>E-mail</label>
+                                            <input type="text" formControlName="email" class="form-control" value="email" >
+                                        </div><!-- /.form-group -->
+
+                                        <div class="form-group col-sm-6">
+                                            <label>New Password</label>
+                                            <input type="password"  formControlName="password" class="form-control" placeholder="********">
+                                        </div><!-- /.form-group -->
+            
+                                    </form><!-- /.row -->
+                                </div>
+                                <div class="background-white p20 mb30">
+                                    <h3 class="page-title" >
+                                        Credit-Card Information
+                                        <a class="btn btn-primary btn-xs pull-right" style="color: white;" (click)="updatedUser()">Update</a>
+                                    </h3>
+                                    <form class="payment-card">
+                                        <div class="bank-card">
+                                            <div class="bank-card__side bank-card__side_front">
+                                                <div class="bank-card__inner">
+                                                    <label class="bank-card__label bank-card__label_holder">
+                                                        <span class="bank-card__hint">Holder of card</span>
+                                                        <input type="text" class="bank-card__field" placeholder="Holder of card" pattern="[A-Za-z, ]{2,}" name="holder-card" required>
+                                                    </label>
+                                                </div>
+                                                <div class="bank-card__inner">
+                                                    <label class="bank-card__label bank-card__label_number">
+                                                        <span class="bank-card__hint">Number of card</span>
+                                                        <input type="text" class="bank-card__field" placeholder="Number of card" pattern="[0-9]{16}" name="number-card" required>
+                                                    </label>
+                                                </div>
+                                                <div class="bank-card__inner">
+                                                    <span class="bank-card__caption">validity date</span>
+                                                </div>
+                                                <div class="bank-card__inner bank-card__footer">
+                                                    <label class="bank-card__label bank-card__month">
+                                                        <span class="bank-card__hint">Month</span>
+                                                        <input type="text" class="bank-card__field" placeholder="MM" maxlength="2" pattern="[0-9]{2}" name="mm-card" required>
+                                                    </label>
+                                                    <span class="bank-card__separator">/</span>
+                                                    <label class="bank-card__label bank-card__year">
+                                                        <span class="bank-card__hint">Year</span>
+                                                        <input type="text" class="bank-card__field" placeholder="YY" maxlength="2" pattern="[0-9]{2}" name="year-card" required>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="bank-card__side bank-card__side_back">
+                                                <div class="bank-card__inner">
+                                                    <label class="bank-card__label bank-card__cvc">
+                                                        <span class="bank-card__hint">CVC</span>
+                                                        <input type="text" class="bank-card__field" placeholder="CVC" maxlength="3" pattern="[0-9]{3}" name="cvc-card" required>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div><!-- /.content -->
+                        </div><!-- /.col-* -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.main-inner -->
+        </div><!-- /.main -->    
+    </div><!-- /.page-wrapper -->

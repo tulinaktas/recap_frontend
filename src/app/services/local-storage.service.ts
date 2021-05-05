@@ -26,13 +26,19 @@ export class LocalStorageService {
 
   addCurrentCustomer(user:User){
     localStorage.setItem("currentUser",user.firstName+" "+user.lastName);
+    localStorage.setItem("email",user.email);
   }
 
   removeCurrentCustomer(){
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("email");
   }
 
   getCurrentUser(){
     return localStorage.getItem("currentUser");
+  }
+  
+  getCurrentUserEmail(){
+    return localStorage.getItem("email");
   }
 }

@@ -30,6 +30,7 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CarComponent } from './components/car/car.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { LoginComponent } from './components/login/login.component';
     BrandSearchPipe,
     VatAddedPipe,
     PaymentComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileEditComponent
   ],
   imports: [
     HttpClientModule,
