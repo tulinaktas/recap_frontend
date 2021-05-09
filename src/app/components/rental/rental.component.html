@@ -7,29 +7,29 @@
     <!--Content-->
     <div class="modal-content text-center">
       <!--Header-->
-      <div class="modal-header d-flex justify-content-center" style="background-color: rgba(24, 27, 32, 0.808)">
+      <div class="modal-header d-flex justify-content-center">
         <p class="heading">Rent</p>
       </div>
 
       <!--Body-->
-    <div class="modal-body" style="background-color: rgba(215, 222, 235, 0.658); text-align: left;">
+    <div class="modal-body">
 
-      <div class="form-group row mb-2">   
-        <label class="col-4" for="brandName" style="color: black;">Brand:</label>
+      <div class="form-group row mb-4">   
+        <div class="col-4" for="brandName"> Brand:</div>
             <div class="col-8" style="font-size: 1.2rem">
-              <input type="text" class = "form-control" style="color: black; background-color: white;" [value]="car.brandName" disabled>
+              <input type="text" class = "form-control" [value]="car.brandName" disabled>
             </div>
       </div>
 
-      <div class="form-group row mb-2">  
-        <label class="col-4" for="dailyprice" style="color: black;">Daily Price:</label>
+      <div class="form-group row mb-4">  
+        <div class="col-4" for="dailyprice">Daily Price:</div>
             <div class="col-8" style="font-size: 1.2rem">
-              <input type="text" class = "form-control" style="color: black;background-color: white;" [value]="car.dailyPrice|vatAdded:10 |currency" disabled>
+              <input type="text" class = "form-control" [value]="car.dailyPrice|vatAdded:10 |currency" disabled>
             </div>
       </div>
 
-      <div class="form-group row mb-2"> 
-        <label class="col-4" for="customerId" style="color: black;">Customers:</label>
+      <div class="form-group row mb-4"> 
+        <div class="col-4" for="customerId">Customers:</div>
           <div class="col-8">
             <select class="form-select" [(ngModel)]="currentCustomerId" id="customer">
               <option class="form-control" *ngFor="let customer of customers" [value] = "customer.id" [selected]="setCustomer(customer)" id="customer">{{customer.companyName}}</option>
@@ -38,8 +38,8 @@
       </div>
 
       <form [formGroup] ="rangeFormGroup">
-        <div class="form-group row mb-2"> 
-          <label class="col-4" for="rent-returndate" style="color: black;">Date:</label>
+        <div class="form-group row mb-4"> 
+          <div class="col-4" for="rent-returndate">Date:</div>
             <div class="col-8">
               <mat-form-field appearance="fill">
                 <mat-label>Enter a date range</mat-label>  
@@ -54,15 +54,10 @@
             </div>
         </div>
       </form>
-      
-    </div>
-
-      <!--Footer-->
-      <div class="modal-footer justify-content-center" style="background-color: rgba(24, 27, 32, 0.808)">
-        <a (click) = addRent() type="button" mdbBtn color="light" class="waves-light" style="color: black; border-radius: .7rem;" mdbWavesEffect data-dismiss="modal">
-          Rent
-        </a>
-      </div>
+      <a type="button" mdbBtn color="elegant" class="waves-light" style="color: white; border-radius: .7rem; margin-left: 21rem ;" mdbWavesEffect data-dismiss="modal"  (click) = addRent() >
+        Rent
+      </a>
+    </div>      
     </div>
     <!--/.Content-->
   </div>

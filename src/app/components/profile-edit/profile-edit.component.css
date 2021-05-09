@@ -528,7 +528,7 @@ h6 {
           }
       
           .bank-card__side_front{
-            background-color: #626f92;
+            background-color: #142a49;
             padding: 5%;
             box-shadow: 0 0 10px #91a8ac;
             border-color: #5b6569;
@@ -539,7 +539,7 @@ h6 {
           }
       
           .bank-card__side_back{
-            background-color: #626f92;
+            background-color: #142a49;
             padding: 24.5% 5% 11%;
             box-shadow: 0 0 2rem #91a8ac;
       

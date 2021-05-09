@@ -1,0 +1,46 @@
+.modal-dialog .modal-content {
+    background-color: #e0e0e0c7;
+    height: 30rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.modal-dialog.modal-notify.modal-info .modal-header{
+    background-color:rgb(24, 27, 32);
+    height: 4.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.modal-dialog.modal-notify .heading {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.modal-dialog.modal-notify .modal-body {
+    padding: 1.5rem;
+    text-align: left;
+    background-color: #e0e0e0a6; 
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.col-4 {
+    flex: 0 0 auto;
+    width: 33.3333333333%;
+    padding: 8px;
+    font-weight:bolder;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.18rem;
+}
+
+.form-control {
+    color: black;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+

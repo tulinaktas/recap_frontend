@@ -18,4 +18,7 @@ export class CustomerService {
   getCustomerById(id:number):Observable<SingleResponseModel<Customer>>{
     return this.httpClient.get<SingleResponseModel<Customer>>(this.apiUrl+"/getbyid?id="+id);
   }
+  getCustomerByUserId(id:number):Observable<SingleResponseModel<Customer>>{
+    return this.httpClient.get<SingleResponseModel<Customer>>(this.apiUrl+"/getbyuserid?id="+id);
+  }
 }

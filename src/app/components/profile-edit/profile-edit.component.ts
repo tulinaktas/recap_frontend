@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CreditCard } from 'src/app/models/creditCard';
 import { User } from 'src/app/models/user';
+import { CreditCardService } from 'src/app/services/credit-card.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileEditComponent implements OnInit {
 
   user: User;
+  userOfCreditCard:CreditCard;
 
   updatedUserForm: FormGroup;
 
@@ -23,7 +26,8 @@ export class ProfileEditComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private localStorage:LocalStorageService, 
     private userService:UserService,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
+    private creditCardService:CreditCardService
     )
   {}
 
@@ -32,6 +36,7 @@ export class ProfileEditComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       if (params["user"]) {
         this.user = JSON.parse(params["user"])
+        this.userOfCreditCard
       }
     })
       this.createUpdatedUserForm();
@@ -54,6 +59,5 @@ export class ProfileEditComponent implements OnInit {
         this.toastrService.success(response.message)
       })
     }
-    
   }
 }

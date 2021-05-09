@@ -1,53 +1,41 @@
-<div class="container-fluid">
-  <br><br>
-  <h6 class="text-center"><strong style="font:bolder ; font-size:3rem;">Details</strong></h6>
-  <div class="row" style="margin-top: 7rem; margin-right: 3rem;">
-    <div class="col-md-5">
-      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div *ngFor="let image of carImages" [class]="getCarousel(image)" data-bs-interval="10000">
-              <img src="https://localhost:44340/CarImages/{{image.imagePath}}" class="d-block w-100 border border-dark rounded" alt="..." width="50px" >
-              <!-- <div class="carousel-caption d-none d-md-block">
-                  <h5>...</h5>
-                  <p>...</p>
-                </div> -->
-          </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-      </div>
-    </div>
-    <div class="col-md-7"style="font-size: 1.2rem;">
-      <dl class="row " >
-        
-        <dt class="col-sm-4" >Brand</dt>
-        <dd class="col-sm-8">{{carDetails.brandName}}</dd>
-      
-        <dt class="col-sm-4">Color</dt>
-        <dd class="col-sm-8">{{carDetails.colorName}}</dd>
-      
-        <dt class="col-sm-4">Model Year</dt>
-        <dd class="col-sm-8">{{carDetails.modelYear}}</dd>
-      
-        <dt class="col-sm-4">Price</dt>
-        <dd class="col-sm-8">{{carDetails.dailyPrice |currency}}</dd>
-      
-        <dt class="col-sm-4">Vat Price</dt>
-        <dd class="col-sm-8">{{carDetails.dailyPrice |vatAdded:10 |currency }}</dd>
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="project-info-box mt-0 text-center">
+                <h1><b>CAR DETAILS</b></h1>
+                <p class="mb-0 text-left">{{carDetails.carName}}</p>
+            </div><!-- / project-info-box -->
 
-        <dt class="col-sm-4">Description</dt>
-        <dd class="col-sm-8">{{carDetails.carName}}</dd>
-        
-        <div class="d-grid gap-2 mb-2" style="margin-right: .8rem;">
-            <app-rental  [car]="carDetails"></app-rental>
-        </div>          
-      </dl>
+            <div class="project-info-box">
+                <p><b>Brand: </b>{{carDetails.brandName}}</p>
+                <p><b>Color: </b>{{carDetails.colorName}}</p>
+                <p><b>Model Year: </b>{{carDetails.modelYear}}</p>
+                <p><b>Price: </b>{{carDetails.dailyPrice |currency}}</p>
+                <p><b>Vat Price: </b>{{carDetails.dailyPrice |vatAdded:10 |currency}}</p>
+                <div class="d-grid gap-2 mb-2" style="margin-right: .8rem;">
+                  <app-rental [car]="carDetails"></app-rental>
+                </div>   
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+
+        <div class="col-md-7">
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let image of carImages" [class]="getCarousel(image)" data-bs-interval="10000">
+                <img src="https://localhost:44340/CarImages/{{image.imagePath}}" class="d-block w-100 border border-dark rounded" alt="..." width="50px" >
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        </div><!-- / column -->
     </div>
-  </div>
 </div>
+
+
