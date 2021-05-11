@@ -19,12 +19,13 @@ export class ProfileEditComponent implements OnInit {
   userOfCreditCard:CreditCard;
 
   updatedUserForm: FormGroup;
+  updatedUserCreditCardForm: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router, 
     private formBuilder: FormBuilder, 
-    private localStorage:LocalStorageService, 
+    private localStorageService:LocalStorageService, 
     private userService:UserService,
     private toastrService:ToastrService,
     private creditCardService:CreditCardService
@@ -32,16 +33,34 @@ export class ProfileEditComponent implements OnInit {
   {}
 
   ngOnInit(): void {
-    
     this.activatedRoute.params.subscribe(params => {
       if (params["user"]) {
         this.user = JSON.parse(params["user"])
-        this.userOfCreditCard
       }
     })
+      this.getCreditCardByCustomerId();
       this.createUpdatedUserForm();
+      this.createUpdatedCreditCardForm();
   }
   
+  getCreditCardByCustomerId(){
+    let id:number = Number(this.localStorageService.getCustomerId());
+    //console.log(id);
+    this.creditCardService.getCreditCardByCustomerId(id).subscribe(response=>{
+      this.userOfCreditCard = response.data;
+      //console.log(this.userOfCreditCard)
+    })
+  }
+
+   createUpdatedCreditCardForm(){
+    this.updatedUserCreditCardForm = this.formBuilder.group({
+      fullName : ["", Validators.required],
+      cardNumber : ["", Validators.required],
+      expirationDate : ["", Validators.required],
+      cvv : ["", Validators.required]
+    })
+  }
+
   createUpdatedUserForm() {
     this.updatedUserForm = this.formBuilder.group({
       firstName: [this.user.firstName, Validators.required],
@@ -54,10 +73,27 @@ export class ProfileEditComponent implements OnInit {
   updatedUser() {
     if (this.updatedUserForm.valid) {
       let user = Object.assign({id: this.user.id}, this.updatedUserForm.value);
-      console.log(user);
+      //console.log(user);
       this.userService.editUser(user).subscribe(response =>{
         this.toastrService.success(response.message)
       })
     }
   }
+
+  updatedCreditCard(){
+    console.log(this.updatedUserCreditCardForm.valid)
+    if(this.updatedUserCreditCardForm.valid){
+      let creditCard = Object.assign({
+        id:this.userOfCreditCard.id, 
+        customerId: this.userOfCreditCard.customerId, 
+        amount : this.userOfCreditCard.amount
+      },this.updatedUserCreditCardForm.value);
+      this.creditCardService.updatedCreditCard(creditCard).subscribe(response =>{
+        this.toastrService.info(response.message)
+      })
+      // console.log(creditCard)
+  }else{
+    this.toastrService.error("Information is missing, please try again")
+  }
+}
 }

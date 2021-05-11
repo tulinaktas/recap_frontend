@@ -30,10 +30,8 @@ export class NavbarComponent implements OnInit {
     this.email = this.localStorageService.getCurrentUserEmail();
     this.userService.getByEmail(this.email).subscribe(response =>{
       let user = response.data;
-      //console.log(JSON.stringify(user));
       this.router.navigate(["/profile/",JSON.stringify(user)]);
     })
-    //console.log(this.email)
   }
 
   logOut(){

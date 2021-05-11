@@ -22,4 +22,8 @@ export class CreditCardService {
     return this.httpClient.post<ResponseModel>(this.apiUrl+"/creditcards/add",creditCard);
   }
 
+  updatedCreditCard(creditCard:CreditCard):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"/creditcards/update",creditCard);
+  }
+
 }

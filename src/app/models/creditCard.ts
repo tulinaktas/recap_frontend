@@ -4,6 +4,6 @@ export interface CreditCard{
     fullName:string;
     cardNumber:string;
     expirationDate:string;
-    CVV:string;
+    cvv:string;
     amount:number;
 }

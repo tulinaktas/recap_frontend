@@ -8,7 +8,7 @@
       >
       <input id="tab-2" type="radio" name="tab" class="sign-up" /><label
         for="tab-2"
-        class="tab"
+        class="tab mb-4"
         >Sign Up</label
       >
       <div class="login-form">
@@ -19,7 +19,7 @@
               <input
                 id="email1"
                 type="text"
-                class="input"
+                class="input mb-3"
                 formControlName="email"
               />
             </div>
@@ -28,24 +28,15 @@
               <input
                 id="password1"
                 type="password"
-                class="input"
+                class="input mb-3"
                 data-type="password"
                 formControlName="password"
               />
             </div>
             <div class="group">
-              <input id="check" type="checkbox" class="check" checked />
-              <label for="check"
-                ><span class="icon"></span> Keep me Signed in</label
-              >
-            </div>
-            <div class="group">
               <input type="submit" class="button" value="Sign In" (click) = "login()" />
             </div>
             <div class="hr"></div>
-            <div class="foot-lnk">
-              <a href="#forgot">Forgot Password?</a>
-            </div>
           </form>
         </div>
         <div class="sign-up-htm">
@@ -92,7 +83,7 @@
             </div>
             <hr />
             <div class="foot-lnk">
-              <label for="tab-1">Already Member?</label>
+              <label for="tab-1" style="color: black;"><b> Already Member? </b></label>
             </div>
           </form>
         </div>
